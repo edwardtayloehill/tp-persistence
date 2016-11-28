@@ -21,10 +21,43 @@ $(function(){
     // This looks like a great place to start AJAX work with a request for all attractions. Don't forget that these kinds of requests are async, so we won't have all of the attractions until it comes back, but once it comes back we can make the option tags
   // ~~~~~~~~~~~~~~~~~~~~~~~
 
+
+  $.get('api/attractions')
+  .then(function ({hotels, restaurants, activities}){
+    hotels.forEach(makeOption, $hotelSelect);
+    restaurants.forEach(makeOption, $restaurantSelect);
+    activities.forEach(makeOption, $activitySelect);
+  })
+
+
+  // $.get('/api/restaurants')
+  // .then(function (restaurants) {
+  //   restaurants.forEach(function(restaurant){
+  //     console.log(restaurant.name);
+  //   });
+  // })
+  // .catch( console.error.bind(console) );
+  //
+  // $.get('/api/hotels')
+  // .then(function (hotels) {
+  //   hotels.forEach(function(hotel){
+  //     console.log(hotel.name);
+  //   });
+  // })
+  // .catch( console.error.bind(console) );
+  //
+  // $.get('/api/activities')
+  // .then(function (activities) {
+  //   activities.forEach(function(activity){
+  //     console.log(activity.name);
+  //   });
+  // })
+  // .catch( console.error.bind(console) );
+
+
+
   // make all the option tags (second arg of `forEach` is a `this` binding)
-  hotels.forEach(makeOption, $hotelSelect);
-  restaurants.forEach(makeOption, $restaurantSelect);
-  activities.forEach(makeOption, $activitySelect);
+
 
   function makeOption (databaseAttraction) {
     var $option = $('<option></option>') // makes a new option tag

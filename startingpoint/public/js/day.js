@@ -24,7 +24,12 @@ var dayModule = (function () {
   });
 
   // ~~~~~~~~~~~~~~~~~~~~~~~
-    // If you follow the logic of `attractionsModule.getEnhanced` (try following it!), you will note that it uses another method given to us by the `attractionModule` (singular). Try just using the method `attractionModule` gives you. You may run into issues with this - you can update `.getEnhanced` or create some new logic to make everything work.
+    // If you follow the logic of `attractionsModule.getEnhanced`
+    //(try following it!), you will note that it uses another method given to us
+    // by the `attractionModule` (singular).
+    // Try just using the method `attractionModule` gives you.
+    // You may run into issues with this - you can update `.getEnhanced` or
+    // create some new logic to make everything work.
   // ~~~~~~~~~~~~~~~~~~~~~~~
   function Day (data) {
     // for brand-new days
