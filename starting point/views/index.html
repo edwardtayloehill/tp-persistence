@@ -1,0 +1,93 @@
+{% extends 'layout.html' %}
+
+{% block title %}Your Trip{% endblock %}
+
+{% block content %}
+<div id="app" class="clearfix">
+  <div class="map-container col-sm-8 col-lg-9">
+    <div>
+      <div id="map-canvas"></div>
+    </div>
+  </div>
+  <div id="control-panel" class="col-sm-4 col-lg-3 clearfix">
+    <div class="col-xs-6 col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-body" id="options-panel">
+          <div>
+            <h4>Hotels</h4>
+            <select data-type="hotel" id="hotel-choices">
+            </select>
+            <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
+          </div>
+          <div>
+            <h4>Restaurants</h4>
+            <select data-type="restaurant" id="restaurant-choices">
+            </select>
+            <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
+          </div>
+          <div>
+            <h4>Activities</h4>
+            <select data-type="activity" id="activity-choices">
+            </select>
+            <button data-action="add" class="btn btn-primary btn-circle pull-right">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-6 col-sm-12">
+      <h3>
+        <span id="day-title">
+          <span>Day not yet Loaded</span>
+          <button class="btn btn-xs btn-danger remove btn-circle">x</button>
+        </span>
+      </h3>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="day-buttons">
+            <!-- <button class="btn btn-circle day-btn current-day">1</button> -->
+            <button class="btn btn-circle day-btn" id="day-add">+</button>
+          </div>
+        </div>
+        <div class="panel-body" id="itinerary">
+          <div>
+            <h4>My Hotel</h4>
+            <ul class="list-group" data-type="hotel">
+              <!-- <div class="itinerary-item">
+                <span class="title">Andaz Wall Street</span>
+                <button class="btn btn-xs btn-danger remove btn-circle">x</button>
+              </div> -->
+            </ul>
+          </div>
+          <div>
+            <h4>My Restaurants</h4>
+            <ul class="list-group" data-type="restaurants">
+              <!-- <div class="itinerary-item">
+                <span class="title">Bouley</span>
+                <button class="btn btn-xs btn-danger remove btn-circle">x</button>
+              </div> -->
+            </ul>
+          </div>
+          <div>
+            <h4>My Activities</h4>
+            <ul class="list-group" data-type="activities">
+              <!-- <div class="itinerary-item">
+                <span class="title">Mahayana Buddhist Temple Association</span>
+                <button class="btn btn-xs btn-danger remove btn-circle">x</button>
+              </div> -->
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- You are going to want to remove this entire script tag and replace it with AJAX requests. `options.js` is a great place to look for that. Do note that `options.js` loading will be asynchronous now -->
+<!-- How are requests currently being made? When we are looking for the index.html, it is rendered from our server and given a couple of objects, `templateHotels` is one of them -->
+<script>
+  {% autoescape false %}
+  var hotels = {{ templateHotels | json }};
+  var restaurants = {{ templateRestaurants | json }};
+  var activities = {{ templateActivities | json }};
+  {% endautoescape %}
+</script>
+{% endblock %}

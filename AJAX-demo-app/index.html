@@ -1,0 +1,38 @@
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+</head>
+
+<body>
+    <h2>Welcome to Generic App</h2>
+    <p><a href="/babes">View baby animal names JSON</a></p>
+    <button id="fetchem">Click me for AJAX baby request</button>
+    <ul id="baby-name-list"></ul>
+</body>
+<script>
+$('#fetchem').on('click', function() {
+
+    $.ajax({
+            url: '/babes',
+            method: 'GET'
+                // dataType: 'text'
+        })
+        .then(function(backendNameArray) {
+            console.log(backendNameArray);
+            var $babyNameList = $('#baby-name-list');
+
+            backendNameArray.forEach(function(babyName) {
+                $babyNameList.append('<li>' + babyName.name + " _ " + babyName.type + '</li>')
+            })
+
+            // throw new Error('HAPPY THANKSGIVING')
+        })
+        .catch(console.error.bind(console))
+        // .catch(function (err) {
+        // 	console.error(err)
+        // })
+})
+</script>
+
+</html>
